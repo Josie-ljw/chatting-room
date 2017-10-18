@@ -18,9 +18,9 @@ io.on('connection', function(socket) {
     // socket.emit('userList', user);
 
   var username = '';
-  socket.on('user join', function(data) {
+  socket.on('user join', (data) => {
     username = data.user;
-    if (username !== null && users.indexOf(username) == '-1') {
+    if (username && users.indexOf(username) == '-1') {
       users.push(username);
       userSockets[username] = socket;
       data.users = users;
@@ -53,13 +53,13 @@ io.on('connection', function(socket) {
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-app.all("*",function(req,res,next) {
+app.all("*", (req,res,next) => {
   res.append('Access-Control-Allow-Origin', '*');
   next();
 });
 
 app.get('/',function(req,res) {
-  res.sendFile(path.resolve(__dirname,'../dist/index.html'));
+  res.sendFile(path.resolve(__dirname, '../dist/index.html'));
 });
 
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -76,15 +76,15 @@ app.post('/login', function(req, res) {
 
 app.get('/player/token', function(req, res) {
   const resNo = req.query.resNo;
-  const secretKey = '9e64ca5b4a446e9a0999d982';
+  const secretKey = '';//this is a secretKey, I can show it here 233333
   const token = QiQiuYun.generateToken(resNo, secretKey);
   res.send({playerToken: token});
 });
 
 const port = '8089';
 const url = 'http://127.0.0.1:8089';
-server.listen(port,function () {
-  console.log('Server is open on %s',url);
-  // opn(url);
+server.listen(port, function() {
+  console.log('Server is open on %s', url);
+  opn(url);
 });
 

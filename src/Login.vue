@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="login-box">
     <!-- <router-view></router-view> -->
     <!-- <router-view name="a"></router-view> -->
     <p>哥们儿，留个名吧</p>
     <input type="text" v-model="newName" v-on:keyup.enter="login">
-    <button @click="login">跳转</button>
+    <button @click="login">确认</button>
   </div>
 </template>
 
@@ -59,6 +59,5 @@
 <style>
   .login-item {
     text-align: center;
-    font-size: 18px;
   }
 </style>

@@ -118,7 +118,7 @@ export default {
     socket.on('goodbye', (users) => {
       this.users = users;
       this.$message({
-        message: '亲，再聊一会儿呗~',
+        message: this.user+'退出了群聊',
       });
     });
   },
